@@ -1,0 +1,48 @@
+name: PHP package
+
+on:
+  workflow_call:
+    inputs:
+      php-versions:
+        description: JSON array of supported PHP versions
+        required: false
+        type: string
+        default: '["8.3", "8.4"]'
+      composer-options:
+        description: Additional options passed to composer install
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ${{ fromJSON(inputs.php-versions) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: composer:v2
+
+      - name: Validate Composer metadata
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist ${{ inputs.composer-options }}
+
+      - name: Run project checks
+        run: composer test
+

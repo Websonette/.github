@@ -1,0 +1,7 @@
+{
+  "name": "Websonette PHP package",
+  "description": "Composer validation and project checks across supported PHP versions",
+  "iconName": "octicon package",
+  "categories": ["PHP"]
+}
+

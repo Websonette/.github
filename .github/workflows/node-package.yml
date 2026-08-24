@@ -1,0 +1,45 @@
+name: Node package
+
+on:
+  workflow_call:
+    inputs:
+      node-versions:
+        description: JSON array of supported Node.js versions
+        required: false
+        type: string
+        default: '["20", "22"]'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node.js ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ${{ fromJSON(inputs.node-versions) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+
+      - name: Run type checks
+        run: npm run typecheck --if-present
+
+      - name: Build package
+        run: npm run build --if-present
+

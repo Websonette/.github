@@ -1,0 +1,6 @@
+{
+  "name": "Websonette Node package",
+  "description": "Tests, type checks, and builds across supported Node.js versions",
+  "iconName": "octicon package",
+  "categories": ["JavaScript"]
+}
