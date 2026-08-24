@@ -19,9 +19,10 @@ Thank you for helping improve Websonette.
 
 Repository-specific instructions take precedence when they define additional requirements.
 
+Shared CI expectations are documented in [`docs/CI.md`](docs/CI.md).
+
 ## Pull requests
 
 Describe what changed, why it changed, and how it was verified. Keep commits understandable; maintainers may squash them when merging.
 
 By contributing, you agree that your contribution is licensed under the license used by the target repository.
-
