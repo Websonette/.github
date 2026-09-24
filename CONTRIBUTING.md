@@ -10,6 +10,7 @@ Thank you for helping improve Websonette.
 
 ## Development expectations
 
+- Follow the organization-wide [Engineering standards](docs/ENGINEERING_STANDARDS.md). Apply SOLID, KISS, and DRY pragmatically; do not add speculative abstractions or layers.
 - Use strict types in PHP files.
 - Preserve backward compatibility unless a breaking change is explicitly intended.
 - Add or update automated tests for behavioral changes.
